@@ -26,12 +26,12 @@ class PostController extends Controller
         $post_dislike = PostDislike::where('user_id', '=', 1)->where('post_id', '=', $post->id)->first();
         if ($post_like !== null) {
             // If there is like, remove the like.
-            PostLike::where('user_id', '=', 1)->where('post_id', '=', $post->id)->delete();
+            $post_like->delete();
             $post->likes = $post->likes - 1;
             $post->save();
         } else if ($post_dislike !== null) {
             // If there is a dislike, remove the dislike, and add like.
-            PostDislike::where('user_id', '=', 1)->where('post_id', '=', $post->id)->delete();
+            $post_dislike->delete();
 
             $post->dislikes = $post->dislikes - 1;
             $post->likes = $post->likes + 1;
@@ -60,7 +60,7 @@ class PostController extends Controller
         $post_dislike = PostDislike::where('user_id', '=', 1)->where('post_id', '=', $post->id)->first();
         if ($post_like !== null) {
             // If there is a like, remove the like, and add dislike.
-            PostLike::where('user_id', '=', 1)->where('post_id', '=', $post->id)->delete();
+            $post_like->delete();
 
             $post->likes = $post->likes - 1;
             $post->dislikes = $post->dislikes + 1;
@@ -72,7 +72,7 @@ class PostController extends Controller
             $post_dislike->save();
         } else if ($post_dislike !== null) {
             // If there is a dislike, remove the dislike.
-            PostDislike::where('user_id', '=', 1)->where('post_id', '=', $post->id)->delete();
+            $post_dislike->delete();
             $post->dislikes = $post->dislikes - 1;
             $post->save();
         } else {
