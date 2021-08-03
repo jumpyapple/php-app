@@ -7,6 +7,28 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Note
+
+```console
+$user = new \App\Models\User();
+$user->name = "lily";
+$user->email = "lily@jumpyapple.dev";
+$user->password = "1234";
+$user->save();
+
+$post = new \App\Models\Post();
+$post->user_id = 1;
+$post->body = "Hi!";
+$post->likes = 0;
+$post->dislikes = 0;
+$post->save();
+
+$post_like = new \App\Models\PostLike();
+$post_like->user_id = 1;
+$post_like->post_id = 1;
+$post_like->save();
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
